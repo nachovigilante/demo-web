@@ -28,9 +28,11 @@
     <main>
         <section id="canciones-x-artista">
             <div class="header">
-                <h2>Canciones por artista</h2>
+                <h2>Canciones por artista v2</h2>
                 <form id="busqueda">
-                    <input type="text" id="id" placeholder="Buscar por id del artista">
+                    <select id="id">
+                        <option value="">Selecciona un artista</option>
+                    </select>
                     <button id="buscar">Buscar</button>
                 </form>
             </div>
@@ -67,6 +69,17 @@
                         message.classList.remove("hidden");
                     });
             });
+
+            fetch("http://localhost:8000/artistas")
+                .then((response) => response.json())
+                .then((data) => {
+                    data.forEach((artista) => {
+                        const option = document.createElement("option");
+                        option.value = artista.id;
+                        option.innerHTML = artista.nombre;
+                        id.appendChild(option);
+                    });
+                });
         </script>
     </main>
 </body>

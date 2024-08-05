@@ -35,21 +35,19 @@
         </section>
         <script src="script.js"></script>
         <script>
-            document.addEventListener("DOMContentLoaded", (event) => {
-                const listaArtistas = document.getElementById("lista-artistas");
-                const message = document.getElementById("message");
+            const listaArtistas = document.getElementById("lista-artistas");
+            const message = document.getElementById("message");
 
-                fetch("http://localhost:8000/artistas")
-                    .then((response) => response.json())
-                    .then((data) => {
-                        listaArtistas.innerHTML = "";
-                        data.forEach((artista) => {
-                            const li = artistaDOM(artista);
-                            listaArtistas.innerHTML += li;
-                        });
-                        message.classList.add("hidden");
+            fetch("http://localhost:8000/artistas")
+                .then((response) => response.json())
+                .then((data) => {
+                    listaArtistas.innerHTML = "";
+                    data.forEach((artista) => {
+                        const li = artistaDOM(artista);
+                        listaArtistas.innerHTML += li;
                     });
-            });
+                    message.classList.add("hidden");
+                });
         </script>
     </main>
 </body>
