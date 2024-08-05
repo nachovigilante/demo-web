@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoticfy | Canciones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Spoticfy</h1>
+        <nav>
+            <ul>
+                <li><a href="/index.html">Inicio</a></li>
+                <li><a href="/canciones.html">Canciones</a></li>
+                <li><a href="/artistas.html">Artistas</a></li>
+                <li><a href="/cancionesxartista.html">Canciones x Artista</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="canciones-x-artista">
+            <div class="header">
+                <h2>Canciones por artista</h2>
+                <form id="busqueda">
+                    <input type="text" id="id" placeholder="Buscar por id del artista">
+                    <button id="buscar">Buscar</button>
+                </form>
+            </div>
+            <div id="message">
+                Ingrese el id del artista para buscar sus canciones
+            </div>
+            <ul id="lista-canciones"></ul>
+        </section>
+        <script src="script.js"></script>
+        <script>
+            const listaCanciones = document.getElementById("lista-canciones");
+            const busqueda = document.getElementById("busqueda");
+            const id = document.getElementById("id");
+            const message = document.getElementById("message");
+
+            busqueda.addEventListener("submit", () => {
+                event.preventDefault();
+                const idArtista = id.value;
+                message.innerHTML = "Cargando...";
+
+                fetch(`http://localhost:8000/artistas/${idArtista}/canciones`)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        listaCanciones.innerHTML = "";
+                        data.forEach((cancion) => {
+                            const li = cancionDOM(cancion);
+                            listaCanciones.innerHTML += li;
+                        });
+                        message.classList.add("hidden");
+                    }).catch((e) => {
+                        message.innerHTML = "No se encontraron canciones para el artista";
+                        message.classList.remove("hidden");
+                    });
+            });
+        </script>
+    </main>
+</body>
+
+</html>

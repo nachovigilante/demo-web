@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spoticfy</title>
+    <title>Spoticfy | Canciones</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -28,9 +28,29 @@
     <main>
         <section id="canciones">
             <h2>Canciones</h2>
+            <div id="message">
+                Cargando...
+            </div>
             <ul id="lista-canciones"></ul>
         </section>
         <script src="script.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", (event) => {
+                const listaCanciones = document.getElementById("lista-canciones");
+                const message = document.getElementById("message");
+
+                fetch("http://localhost:8000/canciones")
+                    .then((response) => response.json())
+                    .then((data) => {
+                        listaCanciones.innerHTML = "";
+                        data.forEach((cancion) => {
+                            const li = cancionDOM(cancion);
+                            listaCanciones.innerHTML += li;
+                        });
+                        message.classList.add("hidden");
+                    });
+            });
+        </script>
     </main>
 </body>
 

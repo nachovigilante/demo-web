@@ -23,6 +23,24 @@ header h1 {
     font-weight: 400;
 }
 
+nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+nav ul li a {
+    font-size: 17px;
+    font-weight: 300;
+    color: #b3b3b3;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: white;
+}
+
 main {
     padding: 50px;
 }
@@ -37,9 +55,51 @@ section h2 {
     font-weight: 400;
 }
 
+input {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #313131;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid #313131;
+    transition: all 0.3s;
+}
+
+input::placeholder {
+    color: #b3b3b3;
+}
+
+input:focus {
+    background-color: #1a1a1a;
+    border: 1px solid #008c63;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #008c63;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #007356;
+}
+
+button:active {
+    background-color: #00664f;
+}
+
+/* ------------- Canciones ------------- */
+
 #canciones ul {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
     gap: 20px;
 }
 
@@ -76,4 +136,65 @@ section h2 {
     font-size: 15px;
     font-weight: 200;
     color: #b3b3b3;
+}
+
+/* ------------- Artistas ------------- */
+
+#artistas ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.artista {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    gap: 12px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+}
+
+.artista img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #313131;
+}
+
+.artista .info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+}
+
+/* ------------- Canciones x Artista ------------- */
+
+#canciones-x-artista .header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#canciones-x-artista ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 20px;
+}
+
+/* --------- Message --------- */
+
+#message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #b3b3b3;
+}
+
+#message.hidden {
+    display: none;
 }
